@@ -29,8 +29,6 @@ main :: proc() {
 	mem.arena_init(&arena, ARENA_BUFFER[:])
 	arena_allocator := mem.arena_allocator(&arena)
 
-	context.allocator = arena_allocator
-
 	ok := false
 	defer os.exit(0 if ok else 1)
 
@@ -49,6 +47,9 @@ main :: proc() {
 			mem.tracking_allocator_destroy(&track)
 		}
 	}
+
+	// All procedures will use the arena allocator.
+	context.allocator = arena_allocator
 
 	ok = run()
 	free_all(arena_allocator)
