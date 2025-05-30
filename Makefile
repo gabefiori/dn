@@ -1,7 +1,7 @@
 OUTPUT = dn
 TEST_OUTPUT = dn-test
 
-BASE_BUILD = odin build src/ -out:$(OUTPUT)
+BASE_BUILD = odin build src/ -out:$(OUTPUT) -vet -strict-style
 
 INSTALL_PATH = /usr/local/bin/$(OUTPUT)
 

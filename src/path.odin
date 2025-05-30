@@ -1,11 +1,11 @@
 package dn
 
-import "core:fmt"
-import "core:log"
 import os "core:os/os2"
 import "core:path/filepath"
 import "core:strings"
 import "core:testing"
+
+_ :: strings
 
 Expand_Error :: enum {
 	None,
