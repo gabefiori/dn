@@ -51,19 +51,15 @@ main :: proc() {
 	// All procedures will use the arena allocator.
 	context.allocator = arena_allocator
 
-	ok = run()
+	cli_options: CLI_Options
+	flags.parse_or_exit(&cli_options, os.args, .Unix)
+
+	ok = run(&cli_options)
 	free_all(arena_allocator)
 }
 
-run :: proc() -> (ok: bool) {
+run :: proc(cli_options: ^CLI_Options) -> (ok: bool) {
 	current_time := local_now()
-	cli_options: CLI_Options
-
-	if err := flags.parse(&cli_options, os.args[1:], .Unix); err != nil {
-		flags.print_errors(CLI_Options, err, "dn", .Unix)
-		_, is_help := err.(flags.Help_Request)
-		return is_help
-	}
 
 	if cli_options.version {
 		fmt.println(VERSION)
