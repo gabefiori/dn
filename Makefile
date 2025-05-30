@@ -6,7 +6,7 @@ BASE_BUILD = odin build src/ -out:$(OUTPUT) -vet -strict-style
 INSTALL_PATH = /usr/local/bin/$(OUTPUT)
 
 build:
-	 $(BASE_BUILD) -o:speed
+	 $(BASE_BUILD) -o:speed -no-bounds-check
 	
 build-debug:
 	 $(BASE_BUILD) -debug
